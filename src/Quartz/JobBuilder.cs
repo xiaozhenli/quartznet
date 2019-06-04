@@ -26,6 +26,7 @@ using Quartz.Impl;
 namespace Quartz
 {
     /// <summary>
+    /// JobBuilder 用来实例化 JobDetail
     /// JobBuilder is used to instantiate <see cref="IJobDetail" />s.
     /// </summary>
     /// <remarks>
@@ -34,8 +35,13 @@ namespace Quartz
     /// reasonable defaults set for calling Build() at any point.  For instance
     /// if you do not invoke <i>WithIdentity(..)</i> a job name will be generated
     /// for you.
+    /// 
+    /// JobBuilder始终将保持自己在有效的状态，因为在任何时候调用Build()方法 都会设置默认值，
+    /// 如果不调用  WithIdentity() ,会自动随机一个Guid作为job的名称
     /// </para>
     /// <para>
+    /// Quartz提供一种构建式的api 通过声明式的语言 .声明式的调用 可以通过引入的静态的方法
+    /// 
     /// Quartz provides a builder-style API for constructing scheduling-related
     /// entities via a Domain-Specific Language (DSL).  The DSL can best be
     /// utilized through the usage of static imports of the methods on the classes
@@ -78,6 +84,7 @@ namespace Quartz
         }
 
         /// <summary>
+        /// 创建一个JobBuilder 用来生成JobDetail
         /// Create a JobBuilder with which to define a <see cref="IJobDetail" />.
         /// </summary>
         /// <returns>a new JobBuilder</returns>
@@ -125,6 +132,7 @@ namespace Quartz
 
 
         /// <summary>
+        /// 创建JobDetail的实例
         /// Produce the <see cref="IJobDetail" /> instance defined by this JobBuilder.
         /// </summary>
         /// <returns>the defined JobDetail.</returns>
@@ -152,6 +160,7 @@ namespace Quartz
         }
 
         /// <summary>
+        /// 使用Jobkey和group==null去验证JobDetail的身份
         /// Use a <see cref="JobKey" /> with the given name and default group to
         /// identify the JobDetail.
         /// </summary>

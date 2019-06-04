@@ -51,28 +51,33 @@ namespace Quartz
     {
         /// <summary>
         /// The key that identifies this jobs uniquely.
+        /// job的唯一key
         /// </summary>
         JobKey Key { get; }
 
         /// <summary>
         /// Get or set the description given to the <see cref="IJob" /> instance by its
         /// creator (if any).
+        /// Job明细描述
         /// </summary>
         string Description { get; }
 
         /// <summary>
         /// Get or sets the instance of <see cref="IJob" /> that will be executed.
+        /// Job实例的类型
         /// </summary>
         Type JobType { get; }
 
         /// <summary>
         /// Get or set the <see cref="JobDataMap" /> that is associated with the <see cref="IJob" />.
+        /// 与该job关联的map数据
         /// </summary>
         JobDataMap JobDataMap { get; }
 
         /// <summary>
         /// Whether or not the <see cref="IJob" /> should remain stored after it is
         /// orphaned (no <see cref="ITrigger" />s point to it).
+        /// 当没有Trigger关联job时是否 持久化该job
         /// </summary>
         /// <remarks>
         /// If not explicitly set, the default value is <see langword="false" />.
@@ -84,12 +89,14 @@ namespace Quartz
 
         /// <summary>
         /// Whether the associated Job class carries the <see cref="PersistJobDataAfterExecutionAttribute" />.
+        /// Job类是否带有 PersistJobDataAfterExecution  特性
         /// </summary>
         /// <seealso cref="PersistJobDataAfterExecutionAttribute" />
         bool PersistJobDataAfterExecution { get; }
 
         /// <summary>
         /// Whether the associated Job class carries the <see cref="DisallowConcurrentExecutionAttribute" />.
+        /// Job类是否带有 PersistJobDataAfterExecution  特性
         /// </summary>
         /// <seealso cref="DisallowConcurrentExecutionAttribute"/>
         bool ConcurrentExecutionDisallowed { get; }
@@ -98,6 +105,8 @@ namespace Quartz
         /// Set whether or not the <see cref="IScheduler" /> should re-Execute
         /// the <see cref="IJob" /> if a 'recovery' or 'fail-over' situation is
         /// encountered.
+        /// 
+        /// 遇到恢复或者容错时  是否可以再次执行
         /// </summary>
         /// <remarks>
         /// If not explicitly set, the default value is <see langword="false" />.
@@ -108,9 +117,19 @@ namespace Quartz
         /// <summary>
         /// Get a <see cref="JobBuilder" /> that is configured to produce a 
         /// <see cref="IJobDetail" /> identical to this one.
+        /// 获取JobBuilder
         /// </summary>
         JobBuilder GetJobBuilder();
 
+
+        /// <summary>
+        /// 克隆job
+        /// </summary>
+        /// <returns></returns>
         IJobDetail Clone();
+
+
+
+
     }
 }
